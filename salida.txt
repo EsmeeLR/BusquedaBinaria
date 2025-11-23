@@ -1,0 +1,2 @@
+Arreglo ordenado: 13 17 25 44 76 88 97 99 101 166 
+Elemento 99 encontrado en la posición: 7

@@ -1,7 +1,8 @@
+import java.io.*;
 
 public class BusquedaBinaria {
 
-    // Función principal de Busqueda binaria
+    // Funcion principal de búsqueda binaria
     public static int binarySearch(int[] arr, int objetivo) {
         int inicio = 0;
         int fin = arr.length - 1;
@@ -9,30 +10,42 @@ public class BusquedaBinaria {
         while (inicio <= fin) {
             int medio = inicio + (fin - inicio) / 2;
 
-            // Si el elemento está en el medio
             if (arr[medio] == objetivo) {
-                return medio; // aquí devuelve la posición
+                return medio; // posición encontrada
             }
 
-            // Si el objetivo es mayor, ignorar la mitad izquierda del arreglo
             if (arr[medio] < objetivo) {
                 inicio = medio + 1;
-            }
-            // Si el objetivo es menor, ignoramos la mitad derecha del arreglo
-            else {
+            } else {
                 fin = medio - 1;
             }
         }
 
-        // Si no se encuentra el elemento
-        return -1;
+        return -1; // si es que no se encuentra el número
     }
 
-    // Función para imprimir el arreglo
+    // Método para imprimir el arreglo
     public static void imprimirArreglo(int[] arr) {
         for (int num : arr) {
             System.out.print(num + " ");
         }
         System.out.println();
+    }
+
+    // Guardar resultado en archivo
+    public static void guardarResultado(int[] arr, int objetivo, int resultado, String nombreArchivo) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter(nombreArchivo));
+        bw.write("Arreglo ordenado: ");
+        for (int num : arr) {
+            bw.write(num + " ");
+        }
+        bw.newLine();
+
+        if (resultado != -1) {
+            bw.write("Elemento " + objetivo + " encontrado en la posición: " + resultado);
+        } else {
+            bw.write("Elemento " + objetivo + " no encontrado en el arreglo.");
+        }
+        bw.close();
     }
 }
